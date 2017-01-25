@@ -1,0 +1,55 @@
+{
+  "name": "start-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "start",
+    "start-task"
+  ],
+  "main": "build/index.js",
+  "homepage": "https://github.com/benteichman/start-typescript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benteichman/start-typescript.git"
+  },
+  "author": {
+    "name": "Ben Teichman",
+    "email": "ben.l.teichman@gmail.com",
+    "url": "https://github.com/benteichman"
+  },
+  "bugs": {
+    "url": "https://github.com/benteichman/start-typescript/issues"
+  },
+  "files": [
+    "build/"
+  ],
+  "scripts": {
+    "start": "start-runner -f ./tasks.js",
+    "prepush": "yarn start prepush",
+    "prepublish": "yarn start build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "release": {
+    "verifyConditions": "condition-circle"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-start": "^0.1.0",
+    "condition-circle": "^1.5.0",
+    "cz-conventional-changelog": "^1.2.0",
+    "husky": "^0.13.0",
+    "semantic-release": "^6.3.2",
+    "semistandard": "^9.2.1",
+    "start-babel-cli": "^4.0.1",
+    "start-standard-preset": "^1.1.0",
+    "tape": "^4.6.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
