@@ -7,18 +7,18 @@
     "start-task"
   ],
   "main": "build/index.js",
-  "homepage": "https://github.com/benteichman/start-typescript",
+  "homepage": "https://github.com/effervescentia/start-typescript",
   "repository": {
     "type": "git",
-    "url": "https://github.com/benteichman/start-typescript.git"
+    "url": "https://github.com/effervescentia/start-typescript.git"
   },
   "author": {
     "name": "Ben Teichman",
     "email": "ben.l.teichman@gmail.com",
-    "url": "https://github.com/benteichman"
+    "url": "https://github.com/effervescentia"
   },
   "bugs": {
-    "url": "https://github.com/benteichman/start-typescript/issues"
+    "url": "https://github.com/effervescentia/start-typescript/issues"
   },
   "files": [
     "build/"
