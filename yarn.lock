@@ -3310,7 +3310,7 @@ start-write@^2.0.0:
     makethen "^0.1.0"
     mkdirp "^0.5.1"
 
-start@^5.0.0:
+start@^5.0.0, start@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/start/-/start-5.1.0.tgz#1c171f0ef9487f56d0ab9a755ace860169208763"
 

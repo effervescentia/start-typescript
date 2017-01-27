@@ -24,7 +24,7 @@
     "build/"
   ],
   "scripts": {
-    "start": "start-runner -p re-start",
+    "start": "start-runner -f tasks.js",
     "prepush": "yarn start prepush",
     "prepublish": "yarn start build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
@@ -44,8 +44,12 @@
     "re-start": "^1.1.0",
     "semantic-release": "^6.3.2",
     "semistandard": "^9.2.1",
+    "start": "^5.1.0",
     "start-babel-cli": "^4.0.1",
+    "start-pretty-reporter": "^0.3.0",
     "start-standard-preset": "^1.1.0",
+    "start-tape": "^0.2.0",
+    "tap-spec": "^4.1.1",
     "tape": "^4.6.3"
   },
   "config": {
