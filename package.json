@@ -24,7 +24,7 @@
     "build/"
   ],
   "scripts": {
-    "start": "start-runner -f ./tasks.js",
+    "start": "start-runner -p re-start",
     "prepush": "yarn start prepush",
     "prepublish": "yarn start build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
@@ -41,6 +41,7 @@
     "condition-circle": "^1.5.0",
     "cz-conventional-changelog": "^1.2.0",
     "husky": "^0.13.0",
+    "re-start": "^1.1.0",
     "semantic-release": "^6.3.2",
     "semistandard": "^9.2.1",
     "start-babel-cli": "^4.0.1",
@@ -48,8 +49,16 @@
     "tape": "^4.6.3"
   },
   "config": {
+    "restart": {
+      "lintOpts": "semistandard"
+    },
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "tsconfig": "^5.0.3",
+    "typescript": "^2.1.5",
+    "typescript-compiler": "^1.4.1-2"
   }
 }

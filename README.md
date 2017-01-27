@@ -26,13 +26,13 @@ yarn add --dev start-typescript
 import Start from 'start';
 import reporter from 'start-pretty-reporter';
 import files from 'start-files';
-import startTypescript from 'start-typescript';
+import typescript from 'start-typescript';
 
 const start = Start(reporter());
 
 export const task = () => start(
   files([ 'lib/**/*.js', 'test/**/*.js' ]),
-  startTypescript()
+  typescript()
 );
 ```
 
@@ -40,6 +40,8 @@ This task relies on array of files and provides the same, see [documentation](ht
 
 ## Arguments
 
-`startTypescript(<ARG1>, <ARG2>)`
+`typescript(opts)`
 
-* `<ARGUMENT NAME>` – `<ARGUMENT DESCRIPTION>`
+* `opts`
+  * `configFile` - path to an alternate `tsconfig.json`
+  * `compilerOptions` - tsconfig `compilerOptions` as specified [here](http://www.typescriptlang.org/docs/handbook/compiler-options.html)
