@@ -37,20 +37,11 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-preset-start": "^0.1.0",
-    "condition-circle": "^1.5.0",
-    "cz-conventional-changelog": "^1.2.0",
-    "husky": "^0.13.0",
-    "re-start": "^1.1.1",
-    "semantic-release": "^6.3.2",
     "semistandard": "^9.2.1",
-    "start": "^5.1.0",
     "start-babel-cli": "^4.0.1",
-    "start-pretty-reporter": "^0.3.0",
-    "start-standard-preset": "^1.1.0",
     "start-tape": "^0.2.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.3"
+    "tkstr-devtools": "^1.0.0"
   },
   "config": {
     "commitizen": {
