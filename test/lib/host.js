@@ -6,9 +6,9 @@ test('CompilerHost', (t) => {
   const opts = {};
   let host = new CompilerHost([], opts);
 
-  t.deepEqual(host.outFiles, [], 'initializes empty outFiles');
+  t.deepEqual(host.outFiles, {}, 'initializes empty outFiles');
 
-  t.deepEqual(host.files, {}, 'convert input');
+  t.deepEqual(host.files, {}, 'convert empty input');
 
   t.equal(host.compilerOpts, opts, 'uses opts');
 
@@ -28,6 +28,20 @@ test('CompilerHost', (t) => {
 });
 
 test('CompilerHost.writeFile()', (t) => {
+  const data = {};
+  const host = new CompilerHost([], {});
+
+  host.writeFile('myModule', data);
+
+  t.deepEqual(Object.keys(host.outFiles), ['myModule'], 'registers file');
+
+  t.deepEqual(Object.keys(host.outFiles.myModule), ['path', 'data', 'map'], 'has metadata');
+
+  t.equal(host.outFiles.myModule.path, 'myModule', 'registers path');
+
+  t.equal(host.outFiles.myModule.data, data, 'registers data');
+
+  t.equal(host.outFiles.myModule.map, null, 'has null map');
 
   t.end();
 });
