@@ -53,5 +53,9 @@
     "tsconfig": "^5.0.3",
     "typescript": "~2.1.5",
     "typescript-compiler": "^1.4.1-2"
+  },
+  "peerDependencies": {
+    "typescript": "~2.1.5",
+    "typescript-compiler": "^1.4.1-2"
   }
 }
