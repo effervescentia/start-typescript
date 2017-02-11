@@ -1,0 +1,2 @@
+extends:
+  - tough/config/test
