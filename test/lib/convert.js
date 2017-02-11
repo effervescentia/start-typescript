@@ -1,5 +1,5 @@
 import path from 'path';
-import test from 'tape';
+import { expect } from 'chai';
 import ts from 'typescript';
 
 import convertOpts, {
@@ -9,94 +9,65 @@ import convertOpts, {
   convertType
 } from '../../lib/convert';
 
-test('convertOpts()', (t) => {
-  t.deepEqual(
-    convertOpts({ moduleResolution: '', target: '' }), {
+describe('convertOpts()', () => {
+  it('applies defaults', () => {
+    const opts = convertOpts({});
+
+    expect(opts).to.eql({
       types: [],
       lib: [],
       moduleResolution: ts.ModuleResolutionKind.NodeJs,
       target: ts.ScriptTarget.ES5
-    }, 'applies defaults');
-
-  t.end();
+    });
+  });
 });
 
-test('convertTarget()', (t) => {
-  t.equal(
-    convertTarget(''),
-    ts.ScriptTarget.ES5,
-    'applies default'
-  );
+describe('convertTarget()', () => {
+  it('should apply default', () => {
+    expect(convertTarget('')).to.eq(ts.ScriptTarget.ES5);
+  });
 
-  t.equal(
-    convertTarget('es2016'),
-    ts.ScriptTarget.ES2016,
-    'converts to enum'
-  );
+  it('should convert to enum', () => {
+    expect(convertTarget('es2016')).to.eq(ts.ScriptTarget.ES2016);
+  });
 
-  t.equal(
-    convertTarget('eSnEXt'),
-    ts.ScriptTarget.ESNext,
-    'ignores case'
-  );
-
-  t.end();
+  it('should ignore case', () => {
+    expect(convertTarget('eSnEXt')).to.eq(ts.ScriptTarget.ESNext);
+  });
 });
 
-test('convertModule()', (t) => {
-  t.equal(
-    convertModule(''),
-    ts.ModuleResolutionKind.NodeJs,
-    'applies default'
-  );
+describe('convertModule()', () => {
+  it('should apply default', () => {
+    expect(convertModule('')).to.eq(ts.ModuleResolutionKind.NodeJs);
+  });
 
-  t.equal(
-    convertModule('classic'),
-    ts.ModuleResolutionKind.Classic,
-    'converts to enum'
-  );
+  it('should convert to enum', () => {
+    expect(convertModule('classic')).to.eq(ts.ModuleResolutionKind.Classic);
+  });
 
-  t.equal(
-    convertModule('clASSic'),
-    ts.ModuleResolutionKind.Classic,
-    'ignores case'
-  );
-
-  t.end();
+  it('should ignore case', () => {
+    expect(convertModule('clASSic')).to.eq(ts.ModuleResolutionKind.Classic);
+  });
 });
 
-test('convertType()', (t) => {
-  /* beautify preserve:start */
-  t.deepEqual(
-    convertType('node').split(path.sep)
-      .slice(-3),
-    ['node_modules', '@types', 'node'],
-    'adds module path'
-  );
+describe('convertType()', () => {
+  it('should add module path', () => {
+    expect(convertType('node').split(path.sep)
+      .slice(-3)).to.eql(['node_modules', '@types', 'node']);
+  });
 
-  t.equal(
-    ...convertType('casedModule').split(path.sep)
-      .slice(-1),
-    'casedModule',
-    'preserves case'
-  );
-  /* beautify preserve:end */
-
-  t.end();
+  it('should preserve case', () => {
+    expect(...convertType('casedModule').split(path.sep)
+      .slice(-1)).to.eq('casedModule');
+  });
 });
 
-test('convertLibs()', (t) => {
-  t.equal(
-    convertLibs('es6'),
-    'lib.es6.d.ts',
-    'add library file *ixes'
-  );
+describe('convertLibs()', () => {
+  it('should add file *ixes', () => {
+    expect(convertLibs('es6')).to.eq('lib.es6.d.ts');
+  });
 
-  t.equal(
-    convertLibs('scRIPtHOsT'),
-    'lib.scripthost.d.ts',
-    'ignores case'
-  );
-
-  t.end();
+  it('should ignore case', () => {
+    expect(convertLibs('scRIPtHOsT')).to.eq('lib.scripthost.d.ts');
+  });
 });

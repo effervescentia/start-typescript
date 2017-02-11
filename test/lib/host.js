@@ -1,47 +1,61 @@
-import test from 'tape';
+import { expect } from 'chai';
+
+/* eslint-disable no-return-assign, no-unused-expressions */
 
 import CompilerHost from '../../lib/host';
 
-test('CompilerHost', (t) => {
-  const opts = {};
-  let host = new CompilerHost([], opts);
+describe('CompilerHost', () => {
 
-  t.deepEqual(host.outFiles, {}, 'initializes empty outFiles');
+  describe('constructor()', () => {
+    let host = null;
 
-  t.deepEqual(host.files, {}, 'convert empty input');
+    beforeEach(() => host = new CompilerHost([], {}));
 
-  t.equal(host.compilerOpts, opts, 'uses opts');
+    it('should have empty outFiles', () => {
+      expect(host.outFiles).to.eql({});
+    });
 
-  /* conver input */
+    it('should have empty files', () => {
+      expect(host.outFiles).to.eql({});
+    });
 
-  const file1 = { path: '/1' };
-  const file2 = { path: '/2' };
-  const input = [file1, file2];
+    it('should set compilerOpts', () => {
+      const opts = {};
 
-  host = new CompilerHost(input, {});
+      host = new CompilerHost([], opts);
 
-  t.deepEqual(Object.keys(host.files), ['/1', '/2'], 'registers file path');
+      expect(host.compilerOpts).to.eq(opts);
+    });
 
-  t.deepEqual(host.files['/2'], file2, 'registers file data');
+    it('should register file paths', () => {
+      const file1 = { path: '/1' };
+      const file2 = { path: '/2' };
+      const input = [file1, file2];
 
-  t.end();
-});
+      host = new CompilerHost(input, {});
 
-test('CompilerHost.writeFile()', (t) => {
-  const data = {};
-  const host = new CompilerHost([], {});
+      expect(Object.keys(host.files)).to.eql(['/1', '/2']);
 
-  host.writeFile('myModule', data);
+      expect(host.files['/2']).to.eq(file2);
+    });
+  });
 
-  t.deepEqual(Object.keys(host.outFiles), ['myModule'], 'registers file');
+  describe('writeFile()', () => {
+    it('should register file metadata', () => {
+      const data = {};
+      const host = new CompilerHost([], {});
 
-  t.deepEqual(Object.keys(host.outFiles.myModule), ['path', 'data', 'map'], 'has metadata');
+      host.writeFile('myModule', data);
 
-  t.equal(host.outFiles.myModule.path, 'myModule', 'registers path');
+      expect(Object.keys(host.outFiles)).to.eql(['myModule']);
 
-  t.equal(host.outFiles.myModule.data, data, 'registers data');
+      expect(Object.keys(host.outFiles.myModule)).to.eql(['path', 'data', 'map']);
 
-  t.equal(host.outFiles.myModule.map, null, 'has null map');
+      expect(host.outFiles.myModule.path).to.eq('myModule');
 
-  t.end();
+      expect(host.outFiles.myModule.data).to.eq(data);
+
+      expect(host.outFiles.myModule.map).to.be.null;
+    });
+  });
 });
