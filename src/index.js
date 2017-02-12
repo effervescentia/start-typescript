@@ -24,7 +24,9 @@ export const logDiagnostic = (diagnostic, log) => {
 };
 
 export default (opts = {}) => (input) => {
-  return function buildTypescript(log) {
+  return function typescript(log) {
+    log('loading tsconfig.json');
+
     return tsconfig.load(process.cwd(), opts.configFile)
       .then((tscfg) => Object.assign({},
         DEFAULTS,
@@ -36,6 +38,8 @@ export default (opts = {}) => (input) => {
         const files = input.map((file) => file.path);
         const host = new Host(input, compilerOpts);
         const program = ts.createProgram(files, compilerOpts, host);
+
+        log('transpiling files');
         const results = program.emit();
 
         ts.getPreEmitDiagnostics(program)
@@ -45,6 +49,7 @@ export default (opts = {}) => (input) => {
         if (results.emitSkipped) {
           throw new Error('emit skipped');
         }
+        log('emit successful!');
 
         return host.emitFiles();
       })
