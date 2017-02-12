@@ -6,7 +6,7 @@
     "start",
     "start-task"
   ],
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "homepage": "https://github.com/effervescentia/start-typescript",
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "url": "https://github.com/effervescentia/start-typescript/issues"
   },
   "files": [
-    "build/"
+    "dist/"
   ],
   "scripts": {
     "start": "start-runner -p re-start",
@@ -42,7 +42,7 @@
     "eslint-config-tough": "^0.4.0",
     "semantic-release": "^6.3.2",
     "start-babel-cli": "^4.0.1",
-    "tkstr-devtools": "^1.0.0"
+    "tkstr-devtools": "^1.1.0"
   },
   "config": {
     "commitizen": {

@@ -7,7 +7,7 @@ import convertOpts, {
   convertModule,
   convertTarget,
   convertType
-} from '../../lib/convert';
+} from '../src/convert';
 
 describe('convertOpts()', () => {
   it('applies defaults', () => {

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 /* eslint-disable no-return-assign, no-unused-expressions */
 
-import CompilerHost from '../../lib/host';
+import CompilerHost from '../src/host';
 
 describe('CompilerHost', () => {
 
