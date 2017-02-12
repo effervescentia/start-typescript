@@ -11,7 +11,7 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 [![greenkeeper](https://badges.greenkeeper.io/effervescentia/start-typescript.svg)](https://greenkeeper.io/)
 
-Typescript compilation task for [Start](https://github.com/start-runner/start)
+:abc: Typescript compilation task for [Start](https://github.com/start-runner/start)
 
 ## Install
 
