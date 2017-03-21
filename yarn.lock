@@ -2483,9 +2483,9 @@ rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
-re-start@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/re-start/-/re-start-1.7.0.tgz#850c9643e42f728f0b491d6e14e3210c826c06f1"
+re-start@^1.7.4:
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/re-start/-/re-start-1.8.6.tgz#d3e09c0a9f9a62d36fd900aff0e69ea0fd04b41a"
   dependencies:
     start "^5.0.0"
     start-babel "^3.0.0"
@@ -2498,11 +2498,11 @@ re-start@^1.7.0:
     start-mocha "^3.0.0"
     start-pretty-reporter "^0.3.0"
     start-read "^0.3.0"
-    start-release "^1.3.5"
-    start-split "^1.0.1"
-    start-typescript "^1.1.3"
+    start-release "^1.3.6"
+    start-split "^1.0.3"
+    start-typescript "^1.1.4"
     start-watch "^2.0.0"
-    start-write "^2.0.0"
+    start-write "2.0.0"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -3005,9 +3005,9 @@ start-read@^0.3.0:
     graceful-fs "^4.1.5"
     makethen "^0.1.0"
 
-start-release@^1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/start-release/-/start-release-1.3.5.tgz#b9a2c0f3628bc7baceab5bdd6ff59344022b8edb"
+start-release@^1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/start-release/-/start-release-1.3.6.tgz#a83375e329da121426617d0234cb91ca0581511a"
   dependencies:
     nerf-dart "^1.0.0"
     normalize-package-data "^2.3.5"
@@ -3021,18 +3021,17 @@ start-simple-cli@^4.0.0:
     commander "^2.9.0"
     resolve-cwd "^1.0.0"
 
-start-split@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/start-split/-/start-split-1.0.1.tgz#dec7da8171c4d302106e04302f22ede407086667"
+start-split@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/start-split/-/start-split-1.0.3.tgz#c9c3e27617e7eed8d97875ac890b049c16f342a7"
   dependencies:
-    eslint "^3.15.0"
     start "^5.1.0"
     start-concurrent "^0.1.0"
     start-input-connector "^0.2.0"
 
-start-typescript@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/start-typescript/-/start-typescript-1.1.3.tgz#7fabfa6005ffcaa758b3d0207fc5e9f08ce0c4ad"
+start-typescript@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/start-typescript/-/start-typescript-1.1.4.tgz#1944601f2306b4e86a724da7959501a92b044a19"
   dependencies:
     tsconfig "^5.0.3"
     typescript "~2.1.5"
@@ -3044,7 +3043,7 @@ start-watch@^2.0.0:
   dependencies:
     chokidar "^1.6.0"
 
-start-write@^2.0.0:
+start-write@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/start-write/-/start-write-2.0.0.tgz#5eacc4d4ff4125870582528082cc118178a9a5c5"
   dependencies:
@@ -3177,15 +3176,15 @@ through@2, through@^2.3.6, through@~2.3, through@~2.3.1:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
-tkstr-devtools@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/tkstr-devtools/-/tkstr-devtools-1.2.0.tgz#3ffc956f63523006a3511b90862e629ac7532c0a"
+tkstr-devtools@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/tkstr-devtools/-/tkstr-devtools-1.2.2.tgz#bb2ec1e081e7e22509ca7ac0f00fdfa0ec2292e4"
   dependencies:
     babel-preset-start "^0.1.0"
     condition-circle "^1.5.0"
     cz-conventional-changelog "^1.2.0"
     husky "^0.13.1"
-    re-start "^1.7.0"
+    re-start "^1.7.4"
     start-babel-cli "^4.0.1"
 
 to-fast-properties@^1.0.1:

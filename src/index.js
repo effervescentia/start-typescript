@@ -28,15 +28,26 @@ export default (opts = {}) => (input) => {
     log('loading tsconfig.json');
 
     return tsconfig.load(process.cwd(), opts.configFile)
-      .then((tscfg) => Object.assign({},
-        DEFAULTS,
-        tscfg.config.compilerOptions,
-        opts.compilerOptions,
-        FORCED))
-      .then(convertOpts)
+      .then((tscfg) => {
+        log('successfully loaded!');
+
+        return {
+          ...DEFAULTS,
+          ...tscfg.config.compilerOptions,
+          ...opts.compilerOptions,
+          ...FORCED
+        };
+      })
       .then((compilerOpts) => {
+        log('converting raw compiler options', compilerOpts);
+
+        return convertOpts(compilerOpts);
+      })
+      .then((compilerOpts) => {
+        log('successfully coverted!');
         const files = input.map((file) => file.path);
         const host = new Host(input, compilerOpts);
+        log(files);
         const program = ts.createProgram(files, compilerOpts, host);
 
         log('transpiling files');
@@ -53,6 +64,9 @@ export default (opts = {}) => (input) => {
 
         return host.emitFiles();
       })
-      .catch((err) => log(`compilation failed: ${err.message}`));
+      .catch((err) => {
+        log(`compilation failed: ${err.message}`);
+        throw err;
+      });
   };
 };

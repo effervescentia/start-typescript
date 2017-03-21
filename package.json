@@ -7,6 +7,9 @@
     "start-task"
   ],
   "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
   "homepage": "https://github.com/effervescentia/start-typescript",
   "repository": {
     "type": "git",
@@ -20,9 +23,6 @@
   "bugs": {
     "url": "https://github.com/effervescentia/start-typescript/issues"
   },
-  "files": [
-    "dist/"
-  ],
   "scripts": {
     "start": "start-runner -p re-start",
     "prepush": "yarn start prepush",
