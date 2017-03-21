@@ -47,6 +47,7 @@ export default (opts = {}) => (input) => {
         log('successfully coverted!');
         const files = input.map((file) => file.path);
         const host = new Host(input, compilerOpts);
+
         log(files);
         const program = ts.createProgram(files, compilerOpts, host);
 
