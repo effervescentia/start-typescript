@@ -5,6 +5,5 @@ extends:
   - tough/config/esnext
 rules:
   array-bracket-spacing: 0
-  immutable/no-mutation: 0
   no-implicit-coercion: 0
   no-ternary: 0

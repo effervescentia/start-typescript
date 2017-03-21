@@ -91,7 +91,7 @@ export default class CompilerHost {
     return Object.keys(this.outFiles)
       .reduce((emitted, file) => {
         if (file.endsWith('.map')) {
-          // eslint-disable-next-line no-magic-numbers
+          // eslint-disable-next-line no-magic-numbers, immutable/no-mutation
           this.outFiles[file.substring(0, file.length - 4)].map = this.outFiles[file].data;
         } else {
           emitted.push(this.outFiles[file]);
