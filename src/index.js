@@ -1,6 +1,6 @@
 import { relative } from 'path';
-import tsconfig from 'tsconfig';
-import ts from 'typescript';
+import * as tsconfig from 'tsconfig';
+import * as ts from 'typescript';
 import convertOpts from './convert';
 import Host from './host';
 

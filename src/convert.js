@@ -1,5 +1,5 @@
 import { join } from 'path';
-import ts from 'typescript';
+import * as ts from 'typescript';
 
 export const convertLibs = (lib) => `lib.${lib.toLowerCase()}.d.ts`;
 

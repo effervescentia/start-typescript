@@ -1,4 +1,4 @@
-import ts from 'typescript';
+import * as ts from 'typescript';
 
 // returned by CScript sys environment
 const UNSUPPORTED_FILE_ENCODING_ERR_CODE = -2147024809;
