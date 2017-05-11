@@ -45,8 +45,8 @@ export default (opts = {}) => (input) => {
       })
       .then((compilerOpts) => {
         log('successfully coverted!');
-        const files = input.filter((file) => file.match(/\.(ts|js)$/))
-          .map((file) => file.path);
+        const files = input.map((file) => file.path)
+          .filter((path) => path.match(/\.(ts|js)$/));
         const host = new Host(input, compilerOpts);
 
         log(files);
