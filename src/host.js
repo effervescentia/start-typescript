@@ -35,7 +35,7 @@ export default class CompilerHost {
   }
 
   getCurrentDirectory() {
-    return ts.memoize(() => ts.sys.getCurrentDirectory());
+    return ts.sys.getCurrentDirectory();
   }
 
   getCanonicalFileName(fileName) {
