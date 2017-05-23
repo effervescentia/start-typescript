@@ -7,15 +7,14 @@ const UNSUPPORTED_FILE_ENCODING_ERR_CODE = -2147024809;
 export const keyByPath = (map, file) => Object.assign(map, { [file.path]: file });
 /* beautify preserve:end */
 
-/* eslint-disable class-methods-use-this */
+/* eslint-disable class-methods-use-this, immutable/no-mutation */
 export default class CompilerHost {
 
+  outFiles = {};
+
   constructor(input, compilerOpts) {
-    Object.assign(this, {
-      outFiles: {},
-      files: input.reduce(keyByPath, {}),
-      compilerOpts
-    });
+    this.files = input.reduce(keyByPath, {});
+    this.compilerOpts = compilerOpts;
   }
 
   useCaseSensitiveFileNames() {
@@ -78,23 +77,30 @@ export default class CompilerHost {
   }
 
   writeFile(fileName, data) {
-    Object.assign(this.outFiles, {
-      [fileName]: {
-        path: fileName,
-        data,
-        map: null
-      }
-    });
+    this.outFiles[fileName] = {
+      path: fileName,
+      data,
+      map: null
+    };
   }
 
   emitFiles() {
     return Object.keys(this.outFiles)
       .reduce((emitted, file) => {
         if (file.endsWith('.map')) {
-          // eslint-disable-next-line no-magic-numbers, immutable/no-mutation
+          // eslint-disable-next-line no-magic-numbers
           this.outFiles[file.substring(0, file.length - 4)].map = this.outFiles[file].data;
         } else {
-          emitted.push(this.outFiles[file]);
+          const sourceFile = this.outFiles[file];
+          // start-write will add these back for us
+          const match = sourceFile.data.match(/\/\/# sourceMappingURL=.+$/);
+
+          if (match) {
+            // eslint-disable-next-line no-magic-numbers
+            sourceFile.data = sourceFile.data.substr(0, match.index).trim();
+          }
+
+          emitted.push(sourceFile);
         }
 
         return emitted;
