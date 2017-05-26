@@ -88,8 +88,8 @@ export default class CompilerHost {
     return Object.keys(this.outFiles)
       .reduce((emitted, file) => {
         if (file.endsWith('.map')) {
-          // eslint-disable-next-line no-magic-numbers
-          this.outFiles[file.substring(0, file.length - 4)].map = this.outFiles[file].data;
+          // eslint-disable-next-line no-magic-numbers, max-len
+          this.outFiles[file.substring(0, file.length - 4)].map = JSON.parse(this.outFiles[file].data);
         } else {
           const sourceFile = this.outFiles[file];
           // start-write will add these back for us
