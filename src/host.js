@@ -95,9 +95,11 @@ export default class CompilerHost {
       const sourceFile = this.outFiles[file];
 
       if (file.endsWith('.map')) {
-        // eslint-disable-next-line max-len
-        const sourceRoot = path.join(path.relative(path.dirname(file), currentDir), path.relative(currentDir, commonPath));
         const sourceMap = JSON.parse(sourceFile.data);
+        const sourceRoot = path.join(
+          path.relative(file, currentDir),
+          path.relative(currentDir, commonPath)
+        );
 
         // eslint-disable-next-line no-magic-numbers
         this.outFiles[file.substring(0, file.length - 4)].map = { ...sourceMap, sourceRoot };
