@@ -1,3 +1,5 @@
+import * as path from 'path';
+import commonPathPrefix from 'common-path-prefix';
 import * as ts from 'typescript';
 
 // returned by CScript sys environment
@@ -85,25 +87,33 @@ export default class CompilerHost {
   }
 
   emitFiles() {
-    return Object.keys(this.outFiles)
-      .reduce((emitted, file) => {
-        if (file.endsWith('.map')) {
-          // eslint-disable-next-line no-magic-numbers, max-len
-          this.outFiles[file.substring(0, file.length - 4)].map = JSON.parse(this.outFiles[file].data);
-        } else {
-          const sourceFile = this.outFiles[file];
-          // start-write will add these back for us
-          const match = sourceFile.data.match(/\/\/# sourceMappingURL=.+$/);
+    const files = Object.keys(this.outFiles);
+    const commonPath = commonPathPrefix(files);
+    const currentDir = this.getCurrentDirectory();
 
-          if (match) {
-            // eslint-disable-next-line no-magic-numbers
-            sourceFile.data = sourceFile.data.substr(0, match.index).trim();
-          }
+    return files.reduce((emitted, file) => {
+      const sourceFile = this.outFiles[file];
 
-          emitted.push(sourceFile);
+      if (file.endsWith('.map')) {
+        // eslint-disable-next-line max-len
+        const sourceRoot = path.join(path.relative(path.dirname(file), currentDir), path.relative(currentDir, commonPath));
+        const sourceMap = JSON.parse(sourceFile.data);
+
+        // eslint-disable-next-line no-magic-numbers
+        this.outFiles[file.substring(0, file.length - 4)].map = { ...sourceMap, sourceRoot };
+      } else {
+        // start-write will add these back for us
+        const match = sourceFile.data.match(/\/\/# sourceMappingURL=.+$/);
+
+        if (match) {
+          // eslint-disable-next-line no-magic-numbers
+          sourceFile.data = sourceFile.data.substr(0, match.index).trim();
         }
 
-        return emitted;
-      }, []);
+        emitted.push(sourceFile);
+      }
+
+      return emitted;
+    }, []);
   }
 }
