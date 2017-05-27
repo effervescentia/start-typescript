@@ -100,9 +100,14 @@ export default class CompilerHost {
           path.relative(file, currentDir),
           path.relative(currentDir, commonPath)
         );
+        const sourceRelativePath = path.relative(commonPath, path.dirname(file));
 
         // eslint-disable-next-line no-magic-numbers
-        this.outFiles[file.substring(0, file.length - 4)].map = { ...sourceMap, sourceRoot };
+        this.outFiles[file.substring(0, file.length - 4)].map = {
+          ...sourceMap,
+          sourceRoot,
+          sources: sourceMap.sources.map((source) => path.join(sourceRelativePath, source))
+        };
       } else {
         // start-write will add these back for us
         const match = sourceFile.data.match(/\/\/# sourceMappingURL=.+$/);
