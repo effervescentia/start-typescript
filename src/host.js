@@ -97,8 +97,8 @@ export default class CompilerHost {
       if (file.endsWith('.map')) {
         const sourceMap = JSON.parse(sourceFile.data);
         const sourceRoot = path.join(
-          path.relative(file, currentDir),
-          path.relative(currentDir, commonPath)
+          path.relative(path.dirname(file), currentDir),
+          path.relative(currentDir, commonPath),
         );
         const sourceRelativePath = path.relative(commonPath, path.dirname(file));
 
