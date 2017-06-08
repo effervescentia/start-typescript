@@ -1,6 +1,7 @@
 import * as path from 'path';
 import commonPathPrefix from 'common-path-prefix';
 import * as ts from 'typescript';
+import convert from 'convert-source-map';
 
 // returned by CScript sys environment
 const UNSUPPORTED_FILE_ENCODING_ERR_CODE = -2147024809;
@@ -93,14 +94,14 @@ export default class CompilerHost {
 
     return files.reduce((emitted, file) => {
       const sourceFile = this.outFiles[file];
+      const sourceRelativePath = path.relative(commonPath, path.dirname(file));
+      const sourceRoot = path.join(
+        path.relative(path.dirname(file), currentDir),
+        path.relative(currentDir, commonPath),
+      );
 
       if (file.endsWith('.map')) {
         const sourceMap = JSON.parse(sourceFile.data);
-        const sourceRoot = path.join(
-          path.relative(path.dirname(file), currentDir),
-          path.relative(currentDir, commonPath),
-        );
-        const sourceRelativePath = path.relative(commonPath, path.dirname(file));
 
         // eslint-disable-next-line no-magic-numbers
         this.outFiles[file.substring(0, file.length - 4)].map = {
@@ -109,12 +110,15 @@ export default class CompilerHost {
           sources: sourceMap.sources.map((source) => path.join(sourceRelativePath, source))
         };
       } else {
-        // start-write will add these back for us
-        const match = sourceFile.data.match(/\/\/# sourceMappingURL=.+$/);
+        const sourceMap = convert.fromSource(sourceFile.data, true);
 
-        if (match) {
+        if (sourceMap) {
+          sourceMap.setProperty('sourceRoot', sourceRoot)
+            .setProperty('sources', sourceMap.getProperty('sources')
+              .map((source) => path.join(sourceRelativePath, source)));
+
           // eslint-disable-next-line no-magic-numbers
-          sourceFile.data = sourceFile.data.substr(0, match.index).trim();
+          sourceFile.data = `${convert.removeComments(sourceFile.data)}\n${sourceMap.toComment()}`;
         }
 
         emitted.push(sourceFile);

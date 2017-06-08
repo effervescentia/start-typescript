@@ -20,6 +20,8 @@ export const logDiagnostic = (diagnostic, log) => {
     const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
 
     log(formatMsg(diagnostic.file.fileName, [line, character], message));
+  } else {
+    log(`ERROR (${diagnostic.code}): ${diagnostic.messageText}`);
   }
 };
 
