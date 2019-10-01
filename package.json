@@ -39,7 +39,7 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.0.0",
-    "eslint": "^3.19.0",
+    "eslint": "^6.5.1",
     "eslint-config-tough": "^0.4.0",
     "start-babel-cli": "^4.0.1",
     "tkstr-devtools": "^1.2.1"
